@@ -33,7 +33,7 @@ $text = @"
   _____              _  __        ___            
  |_   _|__  _ __ ___| |_\ \      / (_)_ __   ___        _
    | |/ _ \| '__/ __| '_ \ \ /\ / /| | '_ \ / _ \      [_]|
-   | | (_) | | | (__| | | \ V  V / | | |_) |  __/      | ||___
+   | | (_) | | | (__| | | \ V  V / | | |_) |  __/      | ||____
    |_|\___/|_|  \___|_| |_|\_/\_/  |_| .__/ \___|      |_ `    )
                                      |_|                _) __(_
 "@  
@@ -49,8 +49,10 @@ Write-Host "Server executable = " + $executableFilePath
 Write-Host "Path for backup map.zip = " + $mapStorageFilePath
 Write-Host "Live server map folder = " + $currentLiveMapFilePath
 Write-Host "YOU MUST RECOGNIZE THAT THIS PROGRAM WILL COMPLETELY"
-Write-Host "DELETE YOUR MAP IN 120 MINUTES! DO NOT CONTINUE WITHOUT"
+Write-Host "DELETE YOUR MAP IN 121 MINUTES! DO NOT CONTINUE WITHOUT"
 Write-Host "READING THE INSTRUCTIONS AND BACKING UP YOUR MAP"
+Write-Host "YOUR MAP MUST BE IN THE TORCH DIRECTORY NAMED map.zip"
+Write-Host "ADD INTERNAL NOTIFICATION FOR PLAYERS WITH ESSENTIALS"
 Read-Host -Prompt "Press Enter to AGREE TO DELETION OF MAP, Control-C to cancel"
 Write-Host " "
 start-sleep -s 2
@@ -64,7 +66,7 @@ while($true){
     Write-Host "Starting fresh map loop"
 
         Write-Host " "
-        for ($a=0; $a -le 7200; $a++) {
+        for ($a=0; $a -le 7260; $a++) {
         #for ($a=0; $a -le 120; $a++) {
 
             Write-Host -NoNewLine "`r0$a"

@@ -3,7 +3,7 @@
 ![Logo](https://raw.githubusercontent.com/GarretSidzaka/TorchWipe/master/logo.PNG)
 
 
-![Example of program](https://raw.githubusercontent.com/GarretSidzaka/TorchWipe/master/torch_wipe_ex.png)
+![Example of program](https://raw.githubusercontent.com/GarretSidzaka/TorchWipe/master/torchwipe_ex.png)
 
 ## Table of contents
 * [General info](#general-info)

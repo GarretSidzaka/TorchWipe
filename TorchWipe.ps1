@@ -1,4 +1,4 @@
-$Logfile = "C:\TorchWatchdog.log"
+$Logfile = ".\TorchWatchdog.log"
 
 Function LogWrite
 {
@@ -43,17 +43,22 @@ function Get-Funky{
 
 $text = @"
   _____              _  __        ___            
- |_   _|__  _ __ ___| |_\ \      / (_)_ __   ___ 
-   | |/ _ \| '__/ __| '_ \ \ /\ / /| | '_ \ / _ \
-   | | (_) | | | (__| | | \ V  V / | | |_) |  __/
-   |_|\___/|_|  \___|_| |_|\_/\_/  |_| .__/ \___|
-                                     |_|    
+ |_   _|__  _ __ ___| |_\ \      / (_)_ __   ___        _
+   | |/ _ \| '__/ __| '_ \ \ /\ / /| | '_ \ / _ \      [_]|
+   | | (_) | | | (__| | | \ V  V / | | |_) |  __/      | ||
+   |_|\___/|_|  \___|_| |_|\_/\_/  |_| .__/ \___|      |_ `````)
+                                     |_|                _) __(_
 "@  
 Get-Funky $text
 Write-host " "
 Write-Host "Author: GarretSidzaka https://expanse.2enp.com"
 Write-Host " "
 start-sleep -s 2
+$executableFilePath = $PSScriptRoot + "\Torch.Server.exe"
+$mapStorageFilePath =  $PSScriptRoot + "\Instance\Saves"
+$currentLiveMapFilePath = $PSScriptRoot + "\map.zip"
+
+
 while($true){
     Write-Host "Starting at top of loop"
 
@@ -64,9 +69,23 @@ while($true){
             Start-Sleep -Seconds 1
         }
 
-	        		$p.kill()
-
-	            start-process $cleanpath
+	     $executableFilePath.kill()
+        
+		
+		for ($a=0; $a -le 30; $a++) {
+            Write-Host -NoNewLine "`r0$a"
+            Start-Sleep -Seconds 1
+        }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	     start-process $executableFilePath
 
 }
 

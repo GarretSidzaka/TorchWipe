@@ -1,15 +1,3 @@
-$Logfile = ".\TorchWatchdog.log"
-
-Function LogWrite
-{
-   Param ([string]$logstring)
-   $Stamp = (Get-Date).toString("yyyy/MM/dd HH:mm:ss")
-   $logline = "$Stamp $logstring"
-   Add-content $Logfile -value $logline
-}
-
-
-
 function Get-Funky{
     param([string]$Text)
 
@@ -55,43 +43,56 @@ Write-Host "Author: GarretSidzaka https://expanse.2enp.com"
 Write-Host " "
 start-sleep -s 2
 $executableFilePath = $PSScriptRoot + "\Torch.Server.exe"
-$mapStorageFilePath =  $PSScriptRoot + "\Instance\Saves"
-$currentLiveMapFilePath = $PSScriptRoot + "\map.zip"
-
+$mapStorageFilePath =  $PSScriptRoot + "\map.zip"
+$currentLiveMapFilePath = $PSScriptRoot + "\Instance\Saves"
+Write-Host $executableFilePath
+Write-Host $mapStorageFilePath
+Write-Host $currentLiveMapFilePath
 Write-Host "YOU MUST RECOGNIZE THAT THIS PROGRAM WILL COMPLETELY"
-Write-Host "DELETE YOUR MAP IN 20 MINUTES! DO NOT CONTINUE WITHOUT"
+Write-Host "DELETE YOUR MAP IN 120 MINUTES! DO NOT CONTINUE WITHOUT"
 Write-Host "READING THE INSTRUCTIONS AND BACKING UP YOUR MAP"
 Read-Host -Prompt "Press Enter to AGREE TO DELETION OF MAP, Control-C to cancel"
+Write-Host " "
+start-sleep -s 2
+Write-Host "Starting server at " + $executableFilePath
+
 
 start-process $executableFilePath
 
 
 while($true){
-    Write-Host "Starting at top of loop"
+    Write-Host "Starting fresh map loop"
 
-        Write-Host "Beginning 30 second delay before checking again."
+        Write-Host "Beginning 120 minute  delay before checking again."
         Write-Host " "
+        #for ($a=0; $a -le 7200; $a++) {
         for ($a=0; $a -le 30; $a++) {
+
             Write-Host -NoNewLine "`r0$a"
             Start-Sleep -Seconds 1
         }
 
 	     $executableFilePath.kill()
-		 
-		 
-		 
+		 Get-Funky $text
+		 Write-Host "delete the map files"
 		
-Get-Funky $text
-		
-		for ($a=0; $a -le 30; $a++) {
+		for ($a=0; $a -le 10; $a++) {
             Write-Host -NoNewLine "`r0$a"
             Start-Sleep -Seconds 1
         }
 		
 		
+	     Get-ChildItem -Path $currentLiveMapFilePath -Include *.* -File -Recurse | foreach { $_.Delete()}
+		 Get-ChildItem -Path $currentLiveMapFilePath -Include * -File -Recurse | foreach { $_.Delete()}
 		
-		
-		
+          Write-Host "extract the original backup map"
+	
+				 Expand-Archive -LiteralPath $mapStorageFilePath -DestinationPath $currentLiveMapFilePath
+
+	    for ($a=0; $a -le 10; $a++) {
+            Write-Host -NoNewLine "`r0$a"
+            Start-Sleep -Seconds 1
+        }
 		
 		
 		

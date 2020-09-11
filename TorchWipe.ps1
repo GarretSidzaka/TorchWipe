@@ -58,6 +58,13 @@ $executableFilePath = $PSScriptRoot + "\Torch.Server.exe"
 $mapStorageFilePath =  $PSScriptRoot + "\Instance\Saves"
 $currentLiveMapFilePath = $PSScriptRoot + "\map.zip"
 
+Write-Host "YOU MUST RECOGNIZE THAT THIS PROGRAM WILL COMPLETELY"
+Write-Host "DELETE YOUR MAP IN 20 MINUTES! DO NOT CONTINUE WITHOUT"
+Write-Host "READING THE INSTRUCTIONS AND BACKING UP YOUR MAP"
+Read-Host -Prompt "Press Enter to AGREE TO DELETION OF MAP, Control-C to cancel"
+
+start-process $executableFilePath
+
 
 while($true){
     Write-Host "Starting at top of loop"
@@ -70,7 +77,11 @@ while($true){
         }
 
 	     $executableFilePath.kill()
-        
+		 
+		 
+		 
+		
+Get-Funky $text
 		
 		for ($a=0; $a -le 30; $a++) {
             Write-Host -NoNewLine "`r0$a"

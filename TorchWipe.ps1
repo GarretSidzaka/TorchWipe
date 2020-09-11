@@ -34,7 +34,7 @@ $text = @"
  |_   _|__  _ __ ___| |_\ \      / (_)_ __   ___        _
    | |/ _ \| '__/ __| '_ \ \ /\ / /| | '_ \ / _ \      [_]|
    | | (_) | | | (__| | | \ V  V / | | |_) |  __/      | ||
-   |_|\___/|_|  \___|_| |_|\_/\_/  |_| .__/ \___|      |_ `````)
+   |_|\___/|_|  \___|_| |_|\_/\_/  |_| .__/ \___|      |_ `'`'`)
                                      |_|                _) __(_
 "@  
 Get-Funky $text
@@ -45,9 +45,9 @@ start-sleep -s 2
 $executableFilePath = $PSScriptRoot + "\Torch.Server.exe"
 $mapStorageFilePath =  $PSScriptRoot + "\map.zip"
 $currentLiveMapFilePath = $PSScriptRoot + "\Instance\Saves"
-Write-Host $executableFilePath
-Write-Host $mapStorageFilePath
-Write-Host $currentLiveMapFilePath
+Write-Host "Server executable = " + $executableFilePath
+Write-Host "Path for backup map.zip = " + $mapStorageFilePath
+Write-Host "Live server map folder = " + $currentLiveMapFilePath
 Write-Host "YOU MUST RECOGNIZE THAT THIS PROGRAM WILL COMPLETELY"
 Write-Host "DELETE YOUR MAP IN 120 MINUTES! DO NOT CONTINUE WITHOUT"
 Write-Host "READING THE INSTRUCTIONS AND BACKING UP YOUR MAP"
@@ -63,31 +63,35 @@ start-process $executableFilePath
 while($true){
     Write-Host "Starting fresh map loop"
 
-        Write-Host "Beginning 120 minute  delay before checking again."
         Write-Host " "
-        #for ($a=0; $a -le 7200; $a++) {
-        for ($a=0; $a -le 30; $a++) {
+        for ($a=0; $a -le 7200; $a++) {
+        #for ($a=0; $a -le 120; $a++) {
 
             Write-Host -NoNewLine "`r0$a"
             Start-Sleep -Seconds 1
         }
+		 Write-Host "first killing the server process"
 
-	     $executableFilePath.kill()
+	     $doomedServer = Get-Process | Where-Object {$_.Path -like "$executableFilePath"}
+		 Write-Host $doomedServer
+         Get-Process | Where-Object {$_.Path -like "$executableFilePath"} | Stop-Process -Force -processname {$_.ProcessName}
 		 Get-Funky $text
-		 Write-Host "delete the map files"
-		
-		for ($a=0; $a -le 10; $a++) {
+
+
+		for ($a=0; $a -le 5; $a++) {
             Write-Host -NoNewLine "`r0$a"
             Start-Sleep -Seconds 1
         }
 		
-		
+	    Write-Host "delete the map files"
+            Start-Sleep -Seconds 1
 	     Get-ChildItem -Path $currentLiveMapFilePath -Include *.* -File -Recurse | foreach { $_.Delete()}
+		             Start-Sleep -Seconds 1
 		 Get-ChildItem -Path $currentLiveMapFilePath -Include * -File -Recurse | foreach { $_.Delete()}
-		
+		            Start-Sleep -Seconds 1
           Write-Host "extract the original backup map"
 	
-				 Expand-Archive -LiteralPath $mapStorageFilePath -DestinationPath $currentLiveMapFilePath
+		Expand-Archive -LiteralPath $mapStorageFilePath -DestinationPath $currentLiveMapFilePath
 
 	    for ($a=0; $a -le 10; $a++) {
             Write-Host -NoNewLine "`r0$a"

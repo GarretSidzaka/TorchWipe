@@ -19,17 +19,19 @@ Powershell wrapper to completely erase and replace Space Engineers map files aut
 
 2. Create a zip file of all the contents inside your save folder of your instance.  File must be named map.zip 
 
-3. Press `WindowsKey + R` and bring up the run menu.  
+3. Move the map.zip into the same folder as Torch.exe and TorchWipe
 
-4. Next type `shell:startup` and hit enter.
+4. Press `WindowsKey + R` and bring up the run menu.  
 
-5. Create a shortcut to `C:/TorchWipe.ps1` in this folder.  Right click drag does this fast.
+5. Next type `shell:startup` and hit enter.
 
-6. Edit the shortcut target to C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\TorchWipe.ps1
+6. Create a shortcut to `C:/TorchWipe.ps1` in this folder.  Right click drag does this fast.
+
+7. Edit the shortcut target to C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\TorchWipe.ps1
 
 (ya all that stuff)
 
-7. Double click on the shortcut when you want to manually start the watchdog.
+8. Double click on the shortcut when you want to manually start the wrapper.
 * Only works on Windows based servers
 
 

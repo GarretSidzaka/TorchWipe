@@ -41,13 +41,13 @@ Get-Funky $text
 Write-host " "
 Write-Host "Author: GarretSidzaka https://expanse.2enp.com"
 Write-Host " "
+    $executableFilePath = $PSScriptRoot + "\Torch.Server.exe"
+    $mapStorageFilePath =  $PSScriptRoot + "\map.zip"
+    $currentLiveMapFilePath = $PSScriptRoot + "\Instance\Saves"
+    Write-Host "Server executable = " + $executableFilePath
+    Write-Host "Path for backup map.zip = " + $mapStorageFilePath
+    Write-Host "Live server map folder = " + $currentLiveMapFilePath
 start-sleep -s 2
-$executableFilePath = $PSScriptRoot + "\Torch.Server.exe"
-$mapStorageFilePath =  $PSScriptRoot + "\map.zip"
-$currentLiveMapFilePath = $PSScriptRoot + "\Instance\Saves"
-Write-Host "Server executable = " + $executableFilePath
-Write-Host "Path for backup map.zip = " + $mapStorageFilePath
-Write-Host "Live server map folder = " + $currentLiveMapFilePath
 Write-Host "YOU MUST RECOGNIZE THAT THIS PROGRAM WILL COMPLETELY"
 Write-Host "DELETE YOUR MAP IN 121 MINUTES! DO NOT CONTINUE WITHOUT"
 Write-Host "READING THE INSTRUCTIONS AND BACKING UP YOUR MAP"
@@ -60,23 +60,29 @@ Write-Host "Starting server at " + $executableFilePath
 
 
 start-process $executableFilePath
+    $ps = get-process | ?  {$_.Path -eq "$executableFilePath"}
+    Write-Host $ps
+    Write-Host $ps.Name
+	Write-Host $ps.Path
+	Write-Host $ps.id
 
 
 while($true){
+
     Write-Host "Starting fresh map loop"
 
         Write-Host " "
         for ($a=0; $a -le 7260; $a++) {
-        #for ($a=0; $a -le 120; $a++) {
+        #for ($a=0; $a -le 20; $a++) {
 
             Write-Host -NoNewLine "`r0$a"
             Start-Sleep -Seconds 1
         }
 		 Write-Host "first killing the server process"
 
-	     $doomedServer = Get-Process | Where-Object {$_.Path -like "$executableFilePath"}
-		 Write-Host $doomedServer
-         Get-Process | Where-Object {$_.Path -like "$executableFilePath"} | Stop-Process -Force -processname {$_.ProcessName}
+
+		 #Read-Host -Prompt "Press Enter"
+         Stop-Process -Force -Id $ps.id
 		 Get-Funky $text
 
 
@@ -104,7 +110,11 @@ while($true){
 		
 		
 	     start-process $executableFilePath
-
+    $ps = get-process | ?  {$_.Path -eq "$executableFilePath"}
+    Write-Host $ps
+    Write-Host $ps.Name
+	Write-Host $ps.Path
+	Write-Host $ps.id
 }
 
 Read-Host -Prompt "Press Enter to exit"

@@ -35,7 +35,11 @@ Powershell wrapper to completely erase and replace Space Engineers map files aut
 
 ![fix](https://i.stack.imgur.com/k8EVM.jpg)
 
-9. Double click on the shortcut when you want to manually start the wrapper.
+9. You much check the box that will run this script as Administrator!
+
+![fix2](https://1.bp.blogspot.com/-XWA6uPoLJrw/VX2Eg08DM-I/AAAAAAAAIaU/XxLMZcYQT8Y/s1600/powershell%2Brun%2Bas%2Badministrator.png)
+
+10. Double click on the shortcut when you want to manually start the wrapper.
 * Only works on Windows based servers
 
 
